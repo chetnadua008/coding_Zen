@@ -39,3 +39,18 @@ Sc O(1)
 
 https://takeuforward.org/data-structure/dynamic-programming-introduction/
 
+Work with DP (Climbing stairs problem/fibonacci)
+1. represent the problem as indexes
+2. do all the stuff with indexes
+3. 
+  1.sum up all ways -> count total number of ways 
+  2.min of( all ways) -> optimized way
+
+When to use DP?
+1. count total number of ways/solutions to solve a problem
+2. minimum/maximum optimal solution out of all solutions to solve a problem
+3. sum of solutions to solve a problem
+
+
+
+

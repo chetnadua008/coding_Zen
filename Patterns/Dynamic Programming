@@ -1,1 +1,41 @@
+Dynamic Programming - solve problem by breaking into smaller overlapping sub problems
+
+Dynamic Programming methods
+1. Memoization (Top Down Approach)
+2. Tabulation (Bottom Up Approach)
+3. Space Optimization 
+
+fibonacci f(n) = f(n-1) + f(n-2)
+0,1,1,2,3,5......
+
+recursive (base case + break problem + recusion tree)
+f(n){
+  if(n<=1) return n;
+  return f(n-1)+f(n-2);
+}
+
+recursive - > memoization (save overlapping problem result of recursion tree)
+1. create dp[n+1] - store sub problem results
+2. if(dp[n]!=-1) return dp[n]; - do not compute again
+3. return dp[n] = f(n-1) + f(n-2); - save before return
+Tc O(N)
+Sc O(N+N)
+
+recursion-> tabulation (base case save + iteration to big problem)
+1. declare dp[n+1]
+2. initlialize base case dp[0]=0, dp[1]=1;
+3. iterate for(int i=2;i<=n;i++) dp[i]=dp[i-1]+dp[i-2];
+4. return dp[n];
+Tc O(N)
+Sc O(N)
+benifit - no recursion stack space used
+
+tabulation-> space optimization
+1. declare prev, prev2
+2. prev2=0,prev=1
+3. iterate for (int i=2;i<=n;i++){ curi = prev+ prev2; prev2 = prev; prev = curi} return prev;
+Tc O(N)
+Sc O(1)
+
+https://takeuforward.org/data-structure/dynamic-programming-introduction/
 

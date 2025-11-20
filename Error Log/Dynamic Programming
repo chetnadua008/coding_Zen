@@ -14,4 +14,14 @@
         return dp[0];
     }
   }
-2.
+2.House Robber Problem MAX(ROB,SKIP) - non adjacent elements sub sequence maximum sum
+cannot use bit manipulation to generate all subsequences - computationally expensive
+houses = 100 
+subsequence  = 0 to 2^100-1 (31 digit number)
+
+dp - do not use contraint based approach
+constraint based (complicated approach) - i can not rob the adjacent house
+dp[i]= cash[i] + max (dp[0],dp[1],.....,dp[i-2])  state = robbing the ith house, getting cash pile from i-2th prev houses.
+
+
+

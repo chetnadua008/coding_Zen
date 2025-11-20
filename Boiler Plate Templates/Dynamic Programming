@@ -76,3 +76,29 @@ class Solution {
     }
 }
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2D Dynamic Programming - Ninja Training Problem / Paint House Problem
+function(day,last){          ..returns maximum points from 0th day to day
+  ..base case
+  if(day==0){
+    int maxi = 0;
+    for(int i=0;i<3;i++){
+      if(i!=last){
+        maxi = maxx(maxi,task[0][i]);
+      }
+    }
+    return maxi;
+  }
+  ..normal day
+  maxPoints = 0;
+  for(int i=0;i<3;i++){
+    if(i!=last){
+      points = task[day][i] + function(day-1,i);
+      maxPoints = max(maxPoints,points);
+    }
+  }
+  return maxPoints;
+}
+
+call for function(N-1,3)
+

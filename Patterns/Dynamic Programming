@@ -62,6 +62,42 @@ dp[i]= Math.max(cash[i] + dp[i-2], dp[i-1])
 rob - keeep the cash and prev cash from i-2 houses
 not rob - keep the cash from i-1 houses
 
+2D Dynamic Programming
+
+1.More than one variable changes during the recursion (e.g. Index + Last_Activity OR Row + Col)
+Grid Problems:Count paths from (0,0) to (N,M)" or "Min cost to cross the grid."
+Constraint Problems: "Maximize profit but don't do X twice in a row" (Requires tracking last_choice).
+
+2. The Universal State Definition:
+1D DP: f(i) = Best result ending at index i.
+2D DP: f(i, j) = Best result at index i given that the current state/constraint is j.
+
+3. The Three Main Types:
+  Type A: Grid Traversal (Robot/Paths)
+  Logic: I can come from Top or Left.
+  Formula: dp[i][j] = dp[i-1][j] + dp[i][j-1] (Count Paths) OR min(dp[i-1][j], dp[i][j-1]) (Min Path Sum).
+  Space Optimization: We only need the Previous Row to build the Current Row.
+  Space: O(N*M) -> O(M) (Just one row).
+  
+  Type B: Sequence with History (Ninja’s Training / Paint House)
+  Logic: I need to choose an item today, but it depends on what I chose yesterday.
+  State: dp[day][last_activity]
+  for (task in tasks) {
+      if (task != last_activity) {
+          maxVal = max(maxVal, points[task] + f(day-1, task));
+      }
+  }
+  Base Case: Handle the first day (Day 0) by calculating the best possible option given the incoming constraint.
+  
+  Type C: Subsequences (String Matching)
+  Logic: Compare character s1[i] with s2[j].
+  Match: 1 + f(i-1, j-1)
+  No Match: max(f(i-1, j), f(i, j-1))
+
+4. Space Optimization Rule (The "Rolling Array")
+In 2D DP, you rarely need the entire matrix.
+only need yesterday's data to calculate today's data.
+Technique: Maintain prev[] array and curr[] array. At the end of the loop, set prev = curr.
 
 
 

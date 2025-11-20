@@ -23,5 +23,15 @@ dp - do not use contraint based approach
 constraint based (complicated approach) - i can not rob the adjacent house
 dp[i]= cash[i] + max (dp[0],dp[1],.....,dp[i-2])  state = robbing the ith house, getting cash pile from i-2th prev houses.
 
-
+3. House Robber 2 -( circular 1D DP )
+solve the circular constraint by forcing specific decisions:
+  Case A: I MUST rob House 0 (so I cannot rob House N-1).
+  Case B: I MUST rob House N-1 (so I cannot rob House 0).
+Force a move destroys optimal algorithm.
+Example: [5, 100, 5, 100]
+Constraint relaxation
+Instead of "Forcing a Rob," just Remove the Conflict:
+Case A: Remove the Last House. Pass array 0 to N-2. (House 0 is available to be robbed, but not forced).
+Case B: Remove the First House. Pass array 1 to N-1. (House N-1 is available to be robbed, but not forced).
+Take Math.max(Case A, Case B).
 

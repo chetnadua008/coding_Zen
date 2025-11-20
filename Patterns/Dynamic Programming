@@ -51,6 +51,18 @@ When to use DP?
 2. minimum/maximum optimal solution out of all solutions to solve a problem
 3. sum of solutions to solve a problem
 
+Decision based approach in DP 
+Choices and Decision taking to solve DP problem (simple easy approach)
+1. climbing stairs - move 1 step or 2 steps (what gives least cost)
+2. house robber - rob or not rob (what give max cash)
+3. knapsack problem - take or not take item (what give max value with weight contraint)
+
+solution
+dp[i]= Math.max(cash[i] + dp[i-2], dp[i-1])
+rob - keeep the cash and prev cash from i-2 houses
+not rob - keep the cash from i-1 houses
+
+
 
 
 

@@ -102,7 +102,7 @@ function(day,last){          ..returns maximum points from 0th day to day
 
 call for function(N-1,3)
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Unique Paths in a grid
 
 recursive -> M-1,N-1 to 0,0 cell
@@ -143,3 +143,40 @@ class Solution {
         return dp[m-1][n-1];
     }
 }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Min Cost Path in Grid - 2D DP
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] prev = new int[n];
+
+        for(int i=0; i<m; i++) {
+            // Create current row array
+            int[] curr = new int[n]; 
+            
+            for(int j=0; j<n; j++) {
+                if(i==0 && j==0) {
+                    curr[j] = grid[i][j]; // Base Case: Start
+                }
+                else {
+                    int up = Integer.MAX_VALUE;
+                    int left = Integer.MAX_VALUE;
+                    
+                    // Look Up (Access 'prev' array)
+                    if(i > 0) up = prev[j];
+                    
+                    // Look Left (Access 'curr' array)
+                    if(j > 0) left = curr[j-1];
+                    
+                    curr[j] = grid[i][j] + Math.min(up, left);
+                }
+            }
+            // Move Current row to Previous row for next iteration
+            prev = curr;
+        }
+        
+        return prev[n-1];
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

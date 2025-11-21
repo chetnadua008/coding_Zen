@@ -116,3 +116,30 @@ function(int i,int j,int m,int n){
 }
 
 function(m-1,n-1,m,n)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Unique paths + obstacle constraint
+tabulated method
+
+class Solution {
+    public int uniquePathsWithObstacles(int[][] obs) {
+        if(obs[0][0]==1) return 0;
+        int m = obs.length,n = obs[0].length;
+        int [][] dp = new int[m][n];//tabulation table
+        dp[0][0]=1;//base case
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){       //iterate
+                if(i==0 && j==0) continue;
+                if(obs[i][j]==1) dp[i][j]=0;        //obstacle case
+                else{
+                    int up = 0,left = 0;        //default up and left
+                    if(i>0) up = dp[i-1][j];
+                    if(j>0) left = dp[i][j-1];  //function call replaced with dp
+                    dp[i][j]=up + left;
+                }
+
+            }
+        }
+        return dp[m-1][n-1];
+    }
+}

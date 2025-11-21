@@ -35,3 +35,6 @@ Case A: Remove the Last House. Pass array 0 to N-2. (House 0 is available to be 
 Case B: Remove the First House. Pass array 1 to N-1. (House N-1 is available to be robbed, but not forced).
 Take Math.max(Case A, Case B).
 
+4. Unique Paths Grid
+tip-> go from M-1,N-1 cell to 0,0 cell for recurively calling 
+so that tabulation (for loop iteration) goes from 0,0 cell to M-1,N-1 using forward easy loop :)

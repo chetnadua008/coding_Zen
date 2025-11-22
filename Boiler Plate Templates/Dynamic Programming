@@ -144,7 +144,7 @@ class Solution {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Min Cost Path in Grid - 2D DP
+Min Cost Path in Grid - 2D DP (Fix start and Fix target)
 class Solution {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
@@ -179,4 +179,21 @@ class Solution {
         return prev[n-1];
     }
 }
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Triangular Grid (Fixed start to variable target cell last row) min cost path
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int [] prev = new int[n];
+        for(int i=0;i<n;i++) prev[i]=triangle.get(n-1).get(i);
+        for(int i=n-2;i>=0;i--){
+            int [] curr = new int[n];
+            for(int j=i;j>=0;j--){
+                curr[j] = triangle.get(i).get(j) + Math.min(prev[j],prev[j+1]);
+            }
+            prev=curr;
+        }
+        return prev[0];
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -38,3 +38,13 @@ Take Math.max(Case A, Case B).
 4. Unique Paths Grid
 tip-> go from M-1,N-1 cell to 0,0 cell for recurively calling 
 so that tabulation (for loop iteration) goes from 0,0 cell to M-1,N-1 using forward easy loop :)
+
+5. Triangle Grid -> Min Path Sum
+OBSERVATION
+start 0,0 
+end: any cell in last row (not fixed)
+usually -> N-1 th row to 0th row recursively
+this case-> N-1th row have multiple starts
+we take recursion from 0,0
+function(i,j) returns minimum path cost from last row N-1 to cell i,j
+tabulation will be done from N-1 to 0th row using backward loop

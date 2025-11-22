@@ -102,3 +102,9 @@ Start (0,0): dp[0][0] = grid[0][0] (Cost is just the value itself).
 	dp[0][j] = grid[0][j] + dp[0][j-1]
 	First Col (j=0): Can ONLY come from Up.
 	dp[i][0] = grid[i][0] + dp[i-1][0]
+
+
+Falling Paths Min Sum 
+In Falling Path Sum, the entire bottom row is open. It's like a building with N different exit doors.
+recursion will call for each starting cell of last row and then min cost out of all falling paths.
+tabulation we scan last row of dp table and find min cost path

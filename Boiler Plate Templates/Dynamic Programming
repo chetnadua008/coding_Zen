@@ -226,7 +226,7 @@ function(index,target){
     else return false;
   }
   boolean take = false;
-  if(target>array[index]) function(index-1,target-array[index]);
+  if(target>=array[index]) function(index-1,target-array[index]);
   boolean notTake = function(index-1,target);
   return take || notTake;
 }

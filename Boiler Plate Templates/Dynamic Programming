@@ -312,4 +312,5 @@ function(index,target){
   return take+notTake;   //counts total number of ways
 }
 
+Array must have only POSITIVE NUMBERS
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------

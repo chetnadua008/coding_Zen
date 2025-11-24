@@ -234,7 +234,7 @@ function(index,target){
 function(N-1,target)
 N-1 represent 0 to N-1 elements in array contain a subsequence of sum = target
 target = remaining target
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 tabulation
 boolean [][] dp =  new boolean[n][target+1];
         for(int i=0;i<n;i++){ 
@@ -252,3 +252,47 @@ boolean [][] dp =  new boolean[n][target+1];
             }
         }
         return dp[n-1][target];
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DP on subsequence
+Divide an Array into two subsets, get minimum value of absolulte difference (Sum(S1)-Sum(S2))
+
+dp[n-1][target] represent T/F if there exist a subset with sum = target in complete array (0 to N-1) (magic last row dp)
+
+class Solution {
+    public int minimumDifference(int[] nums) {
+        int n = nums.length;
+        
+        int totSum = 0;
+        for(int x:nums) totSum = totSum + x;
+
+        //target sum = 0(no element) to totSum(all element)
+        boolean [] prev = new boolean[totSum+1];
+
+        if(nums[0]<=totSum) prev[nums[0]]=true; prev[0]=true;
+
+        for(int i=1;i<n;i++){
+            boolean [] curr = new boolean[totSum+1];
+            curr[0]=true;
+            for(int target = 1;target<=totSum;target++){
+                boolean take=false;
+                if(nums[i]<=target) take = prev[target-nums[i]];
+                boolean notTake = prev[target];
+                curr[target]= take||notTake;
+            }
+            prev=curr;
+        }
+
+        int minDiff = Integer.MAX_VALUE;
+        for(int i=0;i<=totSum;i++){
+            if(prev[i]==true){
+                int s1 = i;
+                int s2 = totSum-i;
+                minDiff = Math.min(minDiff,Math.abs(s1-s2));
+            }
+        }
+        return minDiff;
+    }
+}
+
+NOTE: Tabulation works only for positive numbers 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

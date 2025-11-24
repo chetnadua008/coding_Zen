@@ -108,3 +108,19 @@ Falling Paths Min Sum
 In Falling Path Sum, the entire bottom row is open. It's like a building with N different exit doors.
 recursion will call for each starting cell of last row and then min cost out of all falling paths.
 tabulation we scan last row of dp table and find min cost path
+
+
+
+DP on subsequence
+Divide an Array into two subsets, get minimum value of absolulte difference (Sum(S1)-Sum(S2))
+
+dp[n-1][target] represent T/F if there exist a subset with sum = target in complete array (0 to N-1) (magic last row dp)
+target belongs [0 (no element of subset), totSum (all elements in subset)]
+
+iterate the last row (complete array) for target = 0 to total sum of array elements
+
+for any dp[n-1][target] = true means there exists a subset s1 with sum = target
+  we get s1 = target
+          s2 = totSum-target (no need compute s2)
+        MinDiff = Min(MinDiff,Abs(S2-S1))
+

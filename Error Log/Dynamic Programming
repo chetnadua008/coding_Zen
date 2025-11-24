@@ -56,5 +56,5 @@ if(col<n-1) function(row+1,col+1)
 
 7. DP On subsequence - cannot take an element of array to form target
 boolean take = false;
-if(target>array[index]) function(index-1,target-array[index])
+if(target>=array[index]) function(index-1,target-array[index])
 cannot shrink the target when array[index]>target because the remaining target is >=0 in recurion tree

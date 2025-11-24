@@ -235,3 +235,20 @@ function(N-1,target)
 N-1 represent 0 to N-1 elements in array contain a subsequence of sum = target
 target = remaining target
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+tabulation
+boolean [][] dp =  new boolean[n][target+1];
+        for(int i=0;i<n;i++){ 
+            dp[i][0]=true;
+        }
+        ...must check if first element is <=target (dp array bound that target goes from 0 to target)
+        if(nums[0]<=target)
+            dp[0][nums[0]]=true;
+
+        for(int i=1;i<n;i++){
+            for(int targ = 1;targ<=target;targ++){
+                boolean take = false;
+                if(targ>=nums[i]) take = dp[i-1][targ-nums[i]];
+                dp[i][targ] = take || dp[i-1][targ];
+            }
+        }
+        return dp[n-1][target];

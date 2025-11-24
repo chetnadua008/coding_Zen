@@ -12,8 +12,8 @@ for(int i=0;i<=n;i++) dp[i]=-1;
 f(5,dp);
 
 f(n,dp){
+  if(n<=1) return n;
   if(dp[n]!=-1) return dp[n];
-  if(n<=1) return dp[n]=n;
   return dp[n] = f(n-1,dp) + f(n-2,dp);
 }
 
@@ -34,19 +34,16 @@ for(int i=2;i<=n;i++){
 return prev;
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Count total number of ways to solve a problem
+number of ways to reach solution - return +1 at base case
 f(N){
   if(N==0) return +1;
   int left = f(N-1);
   int right = f(N-2);
   return left + right;
 }
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 tabulation to space optimization 1D DP
-
 tabulation
-
 class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
@@ -62,7 +59,6 @@ class Solution {
 }
 
 space optimization
-
 class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
@@ -75,7 +71,6 @@ class Solution {
         return prev;
     }
 }
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2D Dynamic Programming - Ninja Training Problem / Paint House Problem
 function(day,last){          ..returns maximum points from 0th day to day
@@ -101,39 +96,38 @@ function(day,last){          ..returns maximum points from 0th day to day
 }
 
 call for function(N-1,3)
-
+-> 3 because initially there is no restriction (last day task)
+-> N-1 because we need to get maximum points from day 0 to day N-1
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Unique Paths in a grid
-
-recursive -> M-1,N-1 to 0,0 cell
-
+Count Unique Paths in a grid
+recursive -> (M-1,N-1) to (0,0) cell
 function(int i,int j,int m,int n){
-  if(i==m-1 && j==n-1) return +1;
-  if(i<0 || j<0) return 0;
-  int up = function(i-1,j,m,n)
-  int down = function(i,j-1,m,n)
-  return up + down;
+  if(i==0 && j==0) return +1;
+  int up = 0, left = 0;
+  if(i>0) up = function(i-1,j,m,n)   //handle walls
+  if(j>0) left = function(i,j-1,m,n)
+  return up + left;
 }
 
 function(m-1,n-1,m,n)
-
+m=number of rows
+n=number of columns
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Unique paths + obstacle constraint
-tabulated method
-
+Count unique paths + obstacle constraint
+tabulation
 class Solution {
     public int uniquePathsWithObstacles(int[][] obs) {
         if(obs[0][0]==1) return 0;
         int m = obs.length,n = obs[0].length;
-        int [][] dp = new int[m][n];//tabulation table
+        int [][] dp = new int[m][n];  
         dp[0][0]=1;//base case
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){       //iterate
+            for(int j=0;j<n;j++){       
                 if(i==0 && j==0) continue;
                 if(obs[i][j]==1) dp[i][j]=0;        //obstacle case
                 else{
                     int up = 0,left = 0;        //default up and left
-                    if(i>0) up = dp[i-1][j];
+                    if(i>0) up = dp[i-1][j];    //handle walls in grid
                     if(j>0) left = dp[i][j-1];  //function call replaced with dp
                     dp[i][j]=up + left;
                 }
@@ -162,13 +156,8 @@ class Solution {
                 else {
                     int up = Integer.MAX_VALUE;
                     int left = Integer.MAX_VALUE;
-                    
-                    // Look Up (Access 'prev' array)
                     if(i > 0) up = prev[j];
-                    
-                    // Look Left (Access 'curr' array)
-                    if(j > 0) left = curr[j-1];
-                    
+                    if(j > 0) left = curr[j-1];                    
                     curr[j] = grid[i][j] + Math.min(up, left);
                 }
             }

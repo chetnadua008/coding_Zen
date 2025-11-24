@@ -296,3 +296,20 @@ class Solution {
 
 NOTE: Tabulation works only for positive numbers 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DP on subsequence - count total number of subsets with sum = target
+soltion = left+ right instead of left||right 
+
+function(index,target){
+  if(target==0) return +1;
+  if(index==0){
+    if(array[0]==target) return +1;
+    else return 0;
+  }
+  int take = 0;
+  if(nums[index]<=target) take = function(index-1,target-nums[index]);
+  int notTake = function(index-1,target);
+  return take+notTake;   //counts total number of ways
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -54,7 +54,11 @@ when move in grid, left when first column ,right when last column . use ternary 
 if(col>0) function(row+1,col-1)
 if(col<n-1) function(row+1,col+1)
 
-7. DP On subsequence - cannot take an element of array to form target
+7. DP On subsequence - when you CANNOT take ith element of array 
 boolean take = false;
 if(target>=array[index]) function(index-1,target-array[index])
 cannot shrink the target when array[index]>target because the remaining target is >=0 in recurion tree
+
+8. DP on subsequence - base case Array Index Out of Bounds error check
+int [][] dp = new int[n][target+1];   [index][target]
+if(nums[0]<=target)   dp[0][nums[0]]=true;  //check!!!!

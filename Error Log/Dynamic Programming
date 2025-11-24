@@ -53,3 +53,8 @@ tabulation will be done from N-1 to 0th row using backward loop
 when move in grid, left when first column ,right when last column . use ternary operator to check. do not move recurively to non existing cell
 if(col>0) function(row+1,col-1)
 if(col<n-1) function(row+1,col+1)
+
+7. DP On subsequence - cannot take an element of array to form target
+boolean take = false;
+if(target>array[index]) function(index-1,target-array[index])
+cannot shrink the target when array[index]>target because the remaining target is >=0 in recurion tree

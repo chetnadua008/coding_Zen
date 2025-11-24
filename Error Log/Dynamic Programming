@@ -62,3 +62,9 @@ cannot shrink the target when array[index]>target because the remaining target i
 8. DP on subsequence - base case Array Index Out of Bounds error check
 int [][] dp = new int[n][target+1];   [index][target]
 if(nums[0]<=target)   dp[0][nums[0]]=true;  //check!!!!
+
+9. DP on subsequence - count number of subsets where sum == target
+nums[i]>=0 (handle zeroes in subset)
+
+Most people fail this problem because they write if(target == 0) return 1; at the top. That cuts off the branch before it can "pick up" the zeros.
+By forcing the recursion to go all the way to index == 0, you ensure that every zero gets a chance to say "Pick me" or "Don't pick me."

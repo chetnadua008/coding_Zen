@@ -214,3 +214,24 @@ class Solution {
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DP on Subsequences 
+Subsequence Sum equals target (target shrinking)
+
+function(index,target){
+  if(target==0){
+    return true;
+  }
+  if(index==0){
+    if(target==array[0]) return true;
+    else return false;
+  }
+  boolean take = false;
+  if(target>array[index]) function(index-1,target-array[index]);
+  boolean notTake = function(index-1,target);
+  return take || notTake;
+}
+
+function(N-1,target)
+N-1 represent 0 to N-1 elements in array contain a subsequence of sum = target
+target = remaining target
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

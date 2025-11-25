@@ -1,0 +1,15 @@
+Assign Cookies
+function(int [] greed, int [] cookieSize){  //return maximum number of children that gets one cookie
+  Arrays.sort(greed);
+  Arrays.sort(cookieSize);
+  //goal - dont waste big cookie on a child with small greed
+  int i=0,j=0;
+  while(i<greed.length && j<cookieSize.length){
+    if(greed[i]<=cookieSize[j]){
+      i++;
+      j++;   //give cookie to the child
+    }
+    else j++;    //waste cookie
+  }
+  return i;
+}

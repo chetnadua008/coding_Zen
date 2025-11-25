@@ -10,3 +10,17 @@ if(greed[i]<=size[j]){
   j++
 }  ..child statisfied
 else j++; ..cookie j is not given to any child
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fractional KnapSack
+1. Item Object -> value, weight, ration (value / weight)
+2. Sort items Array in decreasing ration
+3. if item weight <= bag capactity, take full
+   else item weight > bag capacity, take fraction 
+
+Item [] items = new Item[N];
+for(int i=0;i<N;i++){
+  items[i] = new Item(value[i],weight[i]);
+}
+Arrays.sort(items, (item1,item2)->Double.compare(item2,item1));
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------

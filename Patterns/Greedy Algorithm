@@ -1,0 +1,12 @@
+Assign Cookies  
+g[i] = green of children (it will not accept a cookie with size less than its greed)
+s[i] = size of a cookie
+goal to maximize the number of children that gets a cookie
+
+greedy - give smallest satisfying cookie to child with minimum greed level
+we do sorting of cookiesize and green then use two pointers 
+if(greed[i]<=size[j]){
+  i++;
+  j++
+}  ..child statisfied
+else j++; ..cookie j is not given to any child

@@ -24,3 +24,17 @@ for(int i=0;i<N;i++){
 }
 Arrays.sort(items, (item1,item2)->Double.compare(item2,item1));
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy Approach - standard denomination problem
+
+standard denomination - greedy will always be correct
+standard denomination example [1,2,5,10,20,50,100,200,500,1000,2000]
+where every ith note > kth note + jth note where k<i && j<i
+this is indian currency system where 
+biggest coin is preffered to pay back amount (minimum number of notes would be required)
+
+Dynamic Programming - arbitary denomination problem 
+arbitary denomination example [1,4,5,6] amount = 9rs
+here 6rs < 4 + 5 (9rs more value)
+greedily (heavy note preferred to pay) - 6rs + 1rs + 1rs + 1rs
+dynamic programming (looks all notes) - 5rs + 4rs (here 5 is not heaviest note still we end up needing two coins/notes)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

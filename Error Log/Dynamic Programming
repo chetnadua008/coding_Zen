@@ -68,3 +68,10 @@ nums[i]>=0 (handle zeroes in subset)
 
 Most people fail this problem because they write if(target == 0) return 1; at the top. That cuts off the branch before it can "pick up" the zeros.
 By forcing the recursion to go all the way to index == 0, you ensure that every zero gets a chance to say "Pick me" or "Don't pick me."
+
+10. valid parenthesis problem
+brute - check valid string at the end
+optimal - count varaible (number of left parenthesis) taken in function call to check validity if count<0 return false
+
+overkill - replace wild card with ( or ) or " " in actual string
+optimal - no need to replace, keep track of brackets in count variable 

@@ -38,3 +38,15 @@ here 6rs < 4 + 5 (9rs more value)
 greedily (heavy note preferred to pay) - 6rs + 1rs + 1rs + 1rs
 dynamic programming (looks all notes) - 5rs + 4rs (here 5 is not heaviest note still we end up needing two coins/notes)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy Approach - valid parenthesis string with wild card *
+intuition - convert the branches ( left, right, empty) to a range of count variable (min,max) representing the number of left brackets
+case 1: if char == '(' min ++; max++;
+case 2: if char ==')' min--;max--;
+case 3: if char=='*'{
+    min = Math.min(min+1,min,min-1) // basically min-1
+    max = Math.max(max+1,max,max-1)//basically max+1
+}
+edge case:
+1. if(min<0) min = 0; we cannot have branch where the number of left brackets boils to a negative value
+2. if(max<0) return false; ')' does min = -1, max = -1; there is no future chance it would become valid 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

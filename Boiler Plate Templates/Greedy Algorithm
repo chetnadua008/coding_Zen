@@ -237,3 +237,28 @@ class DoublyLinkList{
 
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Minimum Platforms
+class Solution {
+    public int minPlatform(int arr[], int dep[]) {
+        //  code here
+        int platforms = 0;
+        Arrays.sort(arr);
+        Arrays.sort(dep);
+        int N = arr.length;
+        int i=0,j=0;
+        int cnt = 0,maxCnt=0;
+        while(i<N){
+            if(arr[i]<=dep[j]){
+                i++;
+                cnt++;
+            }
+            else{
+                j++;
+                cnt--;
+            }
+            maxCnt = Math.max(maxCnt,cnt);
+        }
+        return maxCnt;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

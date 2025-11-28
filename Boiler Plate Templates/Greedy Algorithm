@@ -150,3 +150,90 @@ class Solution {
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LRU Cache implemented using HashMap and Doubly Linked List(Coded)
+class LRUCache {
+    Map <Integer,Node> mpp;
+    DoublyLinkList dll;
+    int maxSize;
+    public LRUCache(int capacity) {
+        mpp = new HashMap<>();
+        dll = new DoublyLinkList();
+        maxSize = capacity;
+    }
+    
+    public int get(int key) {
+        if(mpp.containsKey(key)){
+            Node node = mpp.get(key);
+            dll.delete(node);
+            dll.insertAfterHead(node);
+            dll.printDLL();
+
+            return node.value;
+        }
+        else{
+            return -1;
+        }
+    }
+    
+    public void put(int key, int value) {
+        if(mpp.containsKey(key)){
+            Node node = mpp.get(key);
+            node.value = value;
+            dll.delete(node);
+            dll.insertAfterHead(node);
+            return;
+        }
+        if(mpp.size()==maxSize){
+            Node LRU= dll.tail.prev;
+            dll.delete(LRU);
+            mpp.remove(LRU.key);
+        }
+        Node node = new Node(key,value);
+        mpp.put(key,node);
+        dll.insertAfterHead(node);
+        dll.printDLL();
+    }
+}
+
+class Node{
+    int key,value;
+    Node prev,next;
+    public Node(int key, int value){
+        this.key = key;
+        this.value = value;
+    }
+}
+class DoublyLinkList{
+    Node head,tail;
+    public DoublyLinkList(){
+        this.head = new Node(0,0);
+        this.tail= new Node(0,0);
+        this.head.next = this.tail;
+        this.tail.prev = this.head;
+    }
+    public int insertAfterHead(Node node){
+        Node firstNode = this.head;
+        Node nextNode = this.head.next;
+        node.prev= firstNode;
+        node.next= nextNode;
+        firstNode.next = node;
+        nextNode.prev= node;
+        return node.value;
+    }
+    public int delete(Node node){
+        Node prevNode = node.prev;
+        Node nextNode = node.next;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+        return node.value;
+    }
+    public void printDLL(){
+        Node temp = head;
+        while(temp!=null){
+            System.out.println(temp.key + " " +temp.value);
+            temp = temp.next;
+        }
+    }
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

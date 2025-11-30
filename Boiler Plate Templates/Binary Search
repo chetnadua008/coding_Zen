@@ -1,0 +1,34 @@
+First and Last Occurence of target in sorted array
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int n = nums.length;
+        int lbnd= -1;
+        int low = 0,high = n-1;
+        while(low<=high){
+            int mid = low + (high - low)/2;
+            if(nums[mid]>=target){
+                lbnd = mid;
+                high = mid -1;
+            }
+            else low = mid + 1;
+        }
+
+        low =0;
+        high = n-1;
+        int ubnd = -1;
+        while(low<=high){
+            int mid = low + (high - low)/2;
+            if(nums[mid]>target){
+                ubnd = mid;
+                high = mid - 1;
+            }
+            else low = mid + 1;
+        }
+        
+        if(lbnd==ubnd) return new int[]{-1,-1};
+        if(ubnd==-1) return new int []{lbnd,n-1};
+        return new int[]{lbnd,ubnd-1};
+
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

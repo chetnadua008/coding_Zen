@@ -1,0 +1,6 @@
+search in rotated sorted array
+edge case: [3,1] target 1
+
+check if left half is sorted
+nums[low]<=nums[mid] we must use equals sign
+one single element of array is sorted!

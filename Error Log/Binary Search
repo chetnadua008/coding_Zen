@@ -4,3 +4,21 @@ edge case: [3,1] target 1
 check if left half is sorted
 nums[low]<=nums[mid] we must use equals sign
 one single element of array is sorted!
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Koko Eating Bananas - integer overflow error 
+number of hours taken to eat at the speed
+solution - use long as return type
+edge case: [1000000000,1000000000,1000000000]
+speed = 1
+hours = 1000000000+1000000000+1000000000 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ceil Division
+Slow way  (int) Math.ceil(x/(double)y);
+Fast way (x+y-1)/y; where x,y <10^9 (does not use double and ceil function for division
+
+floor division of two integers
+5/2 = 2, 7/3 = 2
+ceil division of two integers
+5/2=3, 7/3=3
+(5+2-1)/2, (7+3-1)/3
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------

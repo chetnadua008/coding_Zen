@@ -31,7 +31,7 @@ class Solution {
 
     }
 }
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 search in rotated sorted array - distinct elements
 class Solution {
     
@@ -63,7 +63,7 @@ class Solution {
         return -1;
     }
 }
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Koko Eating Banana - Linear Search or Binary Search of Answer.
 class Solution {
     //linear search O(N * MaxPile)
@@ -98,4 +98,52 @@ class Solution {
         return hours;
     }
 }
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Minimum number of days to make m bouquets
+class Solution {
+    //)(MaxBloom * N) - linear search
+    public int minDays(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        if(n<(long)m*k) return -1;
+        int max=0;
+        for(int x:bloomDay) max = Math.max(max,x);
+        for(int i=1;i<=max;i++){
+            if(function(i,bloomDay,k,m)) return i;
+        }
+        return -1;
+    }
+    //O(logMaxBloom * N) - binary search
+    public int minDays(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        if(n<(long)m*k) return -1;
+        int max=0;
+        for(int x:bloomDay) max = Math.max(max,x);
+        int low=1,high=max;
+        int ans=0;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(function(mid,bloomDay,k,m)){
+                ans=mid;
+                high=mid-1;
+            } else low = mid +1;
+        }
+        return ans;
+    }
+    public static boolean function(int i, int [] bloomDay,int k,int m){
+        int n = bloomDay.length;
+        int cnt=0,bookie=0;
+        for(int j=0;j<n;j++){
+            if(bloomDay[j]<=i){
+                cnt++;
+                if(cnt==k){
+                    bookie++;
+                    cnt=0;
+                    if(bookie==m) return true;
+                }
+            }
+            else cnt=0;
+        }
+        return false;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------

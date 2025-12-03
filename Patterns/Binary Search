@@ -1,0 +1,27 @@
+Pattern - Min Max 
+Divide this Array into K contiguous subarrays such that the Maximum Sum of any subarray is Minimized
+
+Problem,                  Array Element (x),      Constraint (k),   "The ""Mid"" (Answer)"
+Ship Packages,            Weight of Package,      Days (D),          Ship Capacity
+Book Allocation,          Pages in Book,          Students (M),      Max Pages per Student
+Painter's Partition,      Length of Board,        Painters (K),      Max Time to Paint
+Split Array Largest Sum,  Number,                 Subarrays (m),     Max Sum of Subarray 
+
+helper function for all four problems 
+public boolean isPossible(int[] arr, int k, int limit) {
+    int count = 1;      // Start with 1 Student / 1 Day / 1 Painter
+    int currentSum = 0; // Current load for this person
+    
+    for (int x : arr) {
+        if (x > limit) return false; // Impossible if a single item is bigger than limit
+        
+        if (currentSum + x <= limit) {
+            currentSum += x; // Add to current person's load
+        } else {
+            count++;         // Give to NEXT person
+            currentSum = x;  // Reset load with current item
+        }
+    }
+    return count <= k; // Did we fit it within the allowed number of people?
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

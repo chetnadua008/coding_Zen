@@ -147,3 +147,53 @@ class Solution {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Min Capacity of Truck to ship Packages within D Days
+class Solution {
+    //O((SumWeights-MaxWeights) * N) - linear search
+     public int shipWithinDays(int[] weights, int days) {
+        int max=0,sum=0;
+        for(int x:weights){
+            max = Math.max(max,x);
+            sum = sum + x;
+        }
+
+        for(int cap = max;cap<=sum;cap++){
+            if(function(cap,weights,days)){
+                return cap;
+            }
+        }
+        return -1;
+    }
+    //O(log(SumWeights-MaxWeights) * N) - binary search
+    public int shipWithinDays(int[] weights, int days) {
+        int max=0,sum=0;
+        for(int x:weights){
+            max = Math.max(max,x);
+            sum = sum + x;
+        }
+
+        int low=max,high=sum;
+        int ans=0;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(function(mid,weights,days)){
+                ans=mid;
+                high=mid-1;
+            }
+            else low = mid + 1;
+        }
+        return ans;
+    }
+    public static boolean function(int cap,int[] weights,int days){
+        int load =0,cnt=1;        //count days from first day
+        for(int x:weights){
+            if(load + x <=cap) load = load  + x;
+            else{
+                cnt=cnt+1;
+                load=x;
+            }
+        }
+        return (cnt<=days);
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------

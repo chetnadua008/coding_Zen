@@ -29,4 +29,21 @@ testcase:
 [1000000000,1000000000] m=1 k=1
 noOfBouquets = 2, m=1
 return true
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+min capacity of truck to ship packages with in n days
+tip - starting counting days from zero (helper function)
+
+
+    public static boolean function(int cap,int[] weights,int days){
+        int load =0,cnt=1;  //first day to load
+        for(int x:weights){   //load packages to truck
+            if(load + x <=cap) load = load  + x;
+            else{
+                cnt=cnt+1;      //take next day and then
+                load=x;        //load
+            }
+        }
+        return (cnt<=days);
+    }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -197,3 +197,99 @@ class Solution {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution {
+//linear search on solution
+    public int aggressiveCows(int[] stalls, int k) {
+        Arrays.sort(stalls);
+        int n = stalls.length;
+        int min=Integer.MAX_VALUE;
+        int max = stalls[n-1]-stalls[0];
+        for(int i=1;i<stalls.length;i++) min = Math.min(stalls[i]-stalls[i-1],min);
+        for(int dis=max;dis>=min;dis--){
+            if(function(dis,stalls,k)){
+                return dis;
+            }
+        }
+        return -1;
+    }
+//binary search on solution
+public int aggressiveCows(int[] stalls, int k) {
+        Arrays.sort(stalls);
+        int n = stalls.length;
+        int min=Integer.MAX_VALUE;
+        int max = stalls[n-1]-stalls[0];
+        for(int i=1;i<stalls.length;i++) min = Math.min(stalls[i]-stalls[i-1],min);
+        int low=min,high=max;
+        int ans=0;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(function(mid,stalls,k)){
+                ans=mid;
+                low = mid + 1;
+            }
+            else high=mid-1;
+        }
+        return ans;
+    }
+    public static boolean function(int dis,int[] stalls,int k){
+        int n  = stalls.length;
+        int lastCow=stalls[0];
+        int cnt=1;
+        for(int i=0;i<n;i++){
+            if(stalls[i]-lastCow>=dis){
+                cnt++;
+                lastCow=stalls[i];
+            }
+        }
+        return cnt>=k;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+finding kth positive missing number (i dont know how to convert it to binary search on answers)
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int n = arr.length;
+        int low=0,high=n-1;
+        int ans=-1;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(arr[mid]-(mid+1)<k){
+                ans=mid;
+                low=mid+1;
+            }
+            else high=mid-1;
+        }
+        return k+ans+1;
+    }
+}
+return expression k+ans+1 is reduced from this
+ans[mid] + (k-(ans[mid]-(mid+1)))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+find smallest divisor (same as koko eating banana)
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int low = 1;
+        int max=0;
+        for(int x:nums){
+            max = Math.max(max,x);
+        }
+        int high=max;
+        int ans=-1;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(function(mid,nums,threshold)){
+                ans=mid;
+                high=mid-1;
+            }else low=mid+1;
+        }
+        return ans;
+    }
+    public static boolean function(int mid,int[]nums,int thre){
+        long sum=0;
+        for(int x:nums){
+            sum = sum + (x+mid-1)/mid;
+        }
+        return sum<=thre;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

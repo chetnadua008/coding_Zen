@@ -1,0 +1,34 @@
+//rotate an array to left/right by k places
+leftRotate(int [] nums,int k){
+  int n = nums.length;
+  k = k % n;
+  reverse(nums,0,k-1);
+  reverse(nums,k,n-1);
+  reverse(nums,0,n-1);
+}
+
+rightRotate(int [] nums,int k){
+  int n = nums.length;
+  int k = k % n;
+  reverse(nums,0,n-1);
+  reverse(nums,0,k-1);
+  reverse(nums,k,n-1);
+}
+
+reverse(int [] nums,int low,int high){    //reverse using two pointer approach
+  while(low<high){
+  int temp = nums[low];
+  nums[low] = nums[high];
+  nums[high]=temp;
+  low++;
+  high--;
+  }
+}
+
+//reverse using indexing
+
+k=k%n;
+for(int i=0;i<n;i++){
+  rotated[(i+k)%n]=nums[i];//right rotate by k places
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

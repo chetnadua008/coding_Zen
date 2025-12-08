@@ -1,0 +1,32 @@
+//clockwise rotate
+
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix[0].length;
+        for(int row=0;row<n;row++){
+            for(int col=row+1;col<n;col++){
+                swap(matrix,row,col);
+            }
+        }
+        for(int row=0;row<n;row++){
+            reverse(matrix[row]);
+        }
+    }
+    public static void swap(int [][] matrix,int i,int j){
+        int temp = matrix[i][j];
+        matrix[i][j]=matrix[j][i];
+        matrix[j][i]=temp;
+    }
+    public static void reverse(int [] arr){
+        int low=0,high=arr.length-1;
+        while(low<=high){
+            int temp = arr[low];
+             arr[low]= arr[high];
+             arr[high]=temp;
+             low++;
+             high--;
+        }
+    }
+}
+
+//anti clock wise - transpose + reverse the order of rows

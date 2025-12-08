@@ -47,3 +47,42 @@ function(int [] nums){
 input nums=[1,2,3,0,0,4,7,6]
 outpt nums=[1,2,3,4,7,6,0,0]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//next permutation of array
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        if(n==1) return;
+        int index=n-1;          //break point
+        for(index=n-2;index>=0;index--){
+            if(!(nums[index]>=nums[index+1])){
+                break;
+            }
+        }
+
+
+        if(index==-1) {         //last permutation [3,2,1]
+            reverse(nums,0,n-1);        //[1,2,3]
+            return;
+        }
+
+        int next=0;
+        for(next=n-1 ;next>index ;next--){
+            if(nums[next] > nums[index]) break;
+        }
+        int temp = nums[index];
+        nums[index]=nums[next];
+        nums[next]=temp;
+        reverse(nums,index+1,n-1);
+    }
+    public static void reverse(int [] nums,int low,int high){
+        while(low<=high){
+            int temp = nums[low];
+            nums[low]= nums[high];
+            nums[high]=temp;
+            low++;
+            high--;
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

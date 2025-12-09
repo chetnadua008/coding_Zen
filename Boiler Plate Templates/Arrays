@@ -86,3 +86,27 @@ class Solution {
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Leetcode 3583 - Prefix Suffix Count ( middle, left, right)
+class Solution {
+    public static int MOD=1000000007;
+    public int specialTriplets(int[] nums) {
+        int n = nums.length;
+        Map <Integer,Integer> freqPrev = new HashMap<>();
+        Map <Integer,Integer> freqNext = new HashMap<>();
+        for(int i=0;i<n;i++){
+            freqNext.put(nums[i],freqNext.getOrDefault(nums[i],0)+1);
+        }
+        int ans=0;
+        for(int j=0;j<n;j++){
+            freqNext.put(nums[j],freqNext.get(nums[j])-1);
+                int outlier = nums[j]*2;
+                int left =freqPrev.getOrDefault(outlier,0);
+                int right=freqNext.getOrDefault(outlier,0);
+                long product = (long) left * right;
+                ans = (int) ((ans+product)%MOD);
+            freqPrev.put(nums[j],freqPrev.getOrDefault(nums[j],0)+1);
+        }
+        return ans;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------

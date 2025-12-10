@@ -1,0 +1,4 @@
+Two things
+1. try to read string, do not modify if possible because it makes it complex
+2. extracting |Integer| - use a long to not have integer overflow error
+3. before using s.charAt(i) ALWAYS CHECK IF I<N!!!!! - avoid index out of bound error

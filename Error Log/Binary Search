@@ -58,3 +58,20 @@ to calculate lower bound, initialize ans to n
 it keeps going to leftmost index >= target
 int ans=n;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+logical test case!
+Binary search on answer - max min pattern
+
+test case [2,3,1,1,1,1] , k=5 (target number of splits)
+
+sometime, we will never get the splits==k
+maximum sum    splits (greedy approach)
+3                4
+4                3
+5                2
+6                2
+7                2
+8                2
+9                1
+maxum=3 splits=4
+[2][3][1,1,1][1] can be broken further [2][3][1][1][1][1] upto 6 splits!
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

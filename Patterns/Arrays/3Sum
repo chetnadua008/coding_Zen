@@ -1,0 +1,4 @@
+1. Sorting + Two Pointers (j & k) for each i
+2. avoiding duplicate triplets
+  1. next i-> i++ until i is same as previous (same i gives same triplets j,k on its right)
+  2. one i,j,k triplet when total==0, do j++ until j is same as previous (i fixed, same j will give sams triplets k on its right)

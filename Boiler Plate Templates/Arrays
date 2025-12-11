@@ -164,11 +164,12 @@ class Solution {
             while(j<k){
                 int tot = nums[i]+nums[j]+nums[k];
 
-                if(tot==0){
-                    ans.add(Arrays.asList(new Integer[]{nums[i],nums[j],nums[k]}));
-                    do{
-                        j++;
-                    }while(j<k && nums[j]==nums[j-1]);
+                if (tot == 0) {
+                  ans.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                  j++;
+                  k--; // Optimization: Move both pointers
+                  while (j < k && nums[j] == nums[j - 1]) j++;
+                  while (j < k && nums[k] == nums[k + 1]) k--; 
                 }
 
                 else if(tot>0){

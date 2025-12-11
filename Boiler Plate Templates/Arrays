@@ -126,3 +126,25 @@ class Solution {
 }
 nums[i] E [-1000,+1000]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+print pascals triangle
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans =new ArrayList<>();
+        for(int i=0;i<numRows;i++){
+            List <Integer> row = genRow(i);
+            ans.add(row);
+        }
+        return ans;
+    }
+    public static List<Integer> genRow(int n){
+        List<Integer> row = new ArrayList<>();
+        long prev=1;
+        row.add(1); //nc0'
+        for(int r=1;r<=n;r++){
+            prev = prev * (n-r+1)/r;
+            row.add((int)prev);
+        }
+        return row;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,14 @@
+Check whether a Character is alha numeric
+(c>='a' && c<='z') ||(c>='A' && c<='Z') ||(c>='0' && c<='9')
+Character.isLetterOrDigit(c)
+---------------------------------------------------------------
+initializing a map
+Map<String, Integer> priorityMap = Map.of(
+            "electronics", 0,
+            "grocery", 1,
+            "pharmacy", 2,
+            "restaurant", 3
+);
+------------------------------------------------------------------------------
+list1.addAll(list2)
+----------------------------------------------------------------

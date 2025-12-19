@@ -10,3 +10,18 @@ public static boolean isPrime(long x){
         }
         return true;
 }
+-------------------------------------------------------------------------------------------------------------------------------
+//binary exponent base^exp in log(exp) time
+public static long binaryExp(long base,long exp){
+        long res=1;
+        while(exp>0){
+            if(exp%2==1){
+                res = (res*base) %MOD;
+            }
+
+            base = (base * base) % MOD;
+            exp=exp/2;
+        }
+        return res;
+    }
+--------------------------------------------------------------------------------------------------------------------------------

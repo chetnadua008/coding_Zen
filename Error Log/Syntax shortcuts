@@ -12,3 +12,12 @@ Map<String, Integer> priorityMap = Map.of(
 ------------------------------------------------------------------------------
 list1.addAll(list2)
 ----------------------------------------------------------------
+Graph Adjacency list from [u,v] mapping
+Map <Integer,List<Integer>> adjLs = new HashMap<>();
+for(int [] map:mpp){
+            int u = map[0];
+            int v = map[1];
+            adjLs.computeIfAbsent(u,k->new ArrayList<>()).add(v);
+            adjLs.computeIfAbsent(v,k->new ArrayList<>()).add(u);                        //k = key, lambda function + computeIfAbsent (Maps)
+}
+--------------------------------------------------------------------------------------------------------------

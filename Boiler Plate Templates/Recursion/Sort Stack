@@ -1,0 +1,39 @@
+TC O(N^2) SC O(N)
+class Solution {
+    public void sortStack(Stack<Integer> st) {
+        if(st.isEmpty()) return;
+        int top = st.pop();
+        sortStack(st);
+        
+        //insert top element in sorted stack
+        Stack<Integer> temp = new Stack<>();
+        while(!st.isEmpty() && st.peek()>top){
+            temp.push(st.pop());
+        }
+        st.push(top);
+        while(!temp.isEmpty()) st.push(temp.pop());
+    }
+}
+
+//complete recrusive solution (use recursion stack space instead of temp stack)
+class Solution {
+    public void sortStack(Stack<Integer> st) {
+        if(st.isEmpty()) return;
+        
+        int top = st.pop();
+        sortStack(st);
+        
+        insertSorted(st,top);
+    }
+    public static void insertSorted(Stack<Integer>st,int x){
+        if(st.isEmpty() || st.peek()<=x){
+            st.push(x);
+            return;
+        }
+        
+        //recursion stack space to store the order breaking elements
+        int top = st.pop();
+        insertSorted(st,x);
+        st.push(top);
+    }
+}

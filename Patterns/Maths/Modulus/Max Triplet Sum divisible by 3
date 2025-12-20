@@ -1,3 +1,6 @@
+sum divible by k = Generate Modulus Bucket and cases
+
+
 class Solution {
     public int maximumSum(int[] nums) {
         List<Integer> mod0 = new ArrayList<>();

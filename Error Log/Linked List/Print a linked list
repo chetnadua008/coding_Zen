@@ -1,0 +1,9 @@
+public static void print(Node head){
+    if(head==null) return;
+    while(head!=null){
+      System.out.println(head.data);
+      head = head.next;
+    }
+}
+Note: In java, object reference is passed as value
+the head reference is not changed inside calling function

@@ -1,0 +1,13 @@
+class Solution {
+    public Node reverse(Node head) {
+        Node curr = head,last=null;
+        while(curr!=null){
+            Node temp = curr.next;
+            curr.next = curr.prev;
+            curr.prev = temp;
+            last = curr;
+            curr = temp;
+        }
+        return last;
+    }
+}

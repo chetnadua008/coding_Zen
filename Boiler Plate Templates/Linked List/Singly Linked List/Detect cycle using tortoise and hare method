@@ -1,3 +1,4 @@
+//check if there is a cycle
 public class Solution {
     public boolean hasCycle(ListNode head) {
         ListNode tortoise = head;
@@ -10,3 +11,36 @@ public class Solution {
         return false;
     }
 }
+TC:- O(N)
+SC:O(!)
+//find start node where cycle begins
+public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast){
+                break;
+            }
+        }
+        if(fast==null || fast.next==null){
+            return null;//cycle does not exist
+        }
+        //slow/fast to start of cycle is same as head to start of cycle
+        //PROOF DOWN
+        //A =  start of list to start of cycle
+        //B = start of cycle to slow/fast
+        //C = start of slow/fast to start of cycle
+        //slow * 2 = fast;
+        //(A+B) *2 = (A+B+C+B)
+        //A=C
+        while(head!=slow){
+            head = head.next;
+            slow= slow.next;
+        }
+        return slow;
+
+    }
+TC-O(N)
+sc-O(1)

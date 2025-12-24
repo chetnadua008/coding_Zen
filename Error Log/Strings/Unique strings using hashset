@@ -1,0 +1,6 @@
+
+Set<String> ans = new HashSet<>();
+when we take a set, does it mean to store unique string objects or unique strings?
+Ans: 
+It stores Unique Strings (Values/Content).
+In Java, a HashSet determines uniqueness based on the content of the String, not the memory address (object identity).

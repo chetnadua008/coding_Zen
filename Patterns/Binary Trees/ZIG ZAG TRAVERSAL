@@ -1,0 +1,7 @@
+in place reverse
+
+LinkedList <Integer> ls= new LinkedList<>();
+
+ls.addLast(x) -- creates list on actual order
+
+ls.addFirst(x) -- creates list on reversed order :)

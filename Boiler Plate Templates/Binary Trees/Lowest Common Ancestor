@@ -1,0 +1,51 @@
+//find root to target for both p and q, check the last common node in the paths
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        List<TreeNode> pans = new ArrayList<>();
+        searchNode(root,new ArrayList<>(),pans,p);
+        List<TreeNode> qans = new ArrayList<>();
+        searchNode(root,new ArrayList<>(),qans,q);
+        
+        int i=0;
+        while(i+1<Math.min(pans.size(),qans.size()) && pans.get(i+1)==qans.get(i+1)) i=i+1;
+        return pans.get(i);
+    }
+    public static void searchNode(TreeNode root,List<TreeNode> curr, List<TreeNode> ans,TreeNode target){
+        if(root==null){
+            return;
+        }
+        curr.add(root);
+       
+        if(root==target){
+            for(TreeNode n:curr) ans.add(n);
+            
+            return;
+        }
+        searchNode(root.left,curr,ans,target);
+        searchNode(root.right,curr,ans,target);
+        curr.remove(root);
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+//LCS - a node that has p and q, one on its left and other on its right (junction) or p subtree has q (viceversa)
+//return node = p or q for LCS subtree
+//return node = LCS by root node or any node above LCS node level
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null || root==p || root==q) return root;
+
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+
+        if(left!=null && right!=null) return root;    //return LCS node 
+        return (left!=null)?left:right;    //return the p or q (maybe searched value or LCS when q is in subtree of p)
+    }
+}
+
+//if both left and right exist (p and q on either sides of root) root is the LCA
+//if only p found means other node q is in subtree of it and p is LCA of p and q (and vice versa)
+//or else we return left or right whatever exist :)
+------------------------------------------------------------------------------------------------------------------------------------------------  

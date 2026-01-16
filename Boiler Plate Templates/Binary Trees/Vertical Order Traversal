@@ -1,0 +1,56 @@
+class Solution {
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        List<Node> ls= new ArrayList<>();
+        Queue<Node>q = new LinkedList<>();
+        q.offer(new Node(root,0,0));
+
+        //step 1 -- traverse - row + col
+        while(!q.isEmpty()){
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                Node node = q.poll();
+                ls.add(node);
+                if(node.node.left!=null){
+                    q.offer(new Node(node.node.left,node.r+1,node.c-1));
+                }
+                if(node.node.right!=null){
+                    q.offer(new Node(node.node.right,node.r+1,node.c+1));
+                }
+            }
+        }
+
+        //step 2 -- sort col wise, row wise, value wise
+        Collections.sort(ls,(n1,n2)->{
+            if(n1.c==n2.c){
+                if(n1.r==n2.r) return n1.node.val-n2.node.val;
+                return n1.r-n2.r;
+            }
+            else{
+                return n1.c-n2.c;
+            }
+        });
+
+        //step 3 -- extract node values column wise
+        int i=0;
+        int n = ls.size();
+        List<List<Integer>> ans= new ArrayList<>();
+        while(i<n){
+            List<Integer> temp = new ArrayList<>();
+            do{
+                temp.add(ls.get(i).node.val);
+                i++;
+            }while(i<n && ls.get(i).c==ls.get(i-1).c);
+            ans.add(temp);
+        }
+        return ans;
+    }
+}
+class Node{
+    TreeNode node;
+    int r,c;
+    public Node(TreeNode node, int r, int c){
+        this.node  = node;
+        this.r=r;
+        this.c=c;
+    }
+}

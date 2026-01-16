@@ -1,0 +1,15 @@
+
+class Solution {
+    public int maxPathSum(TreeNode root) {
+        int [] ans = new int[]{Integer.MIN_VALUE};
+        function(root,ans);
+        return ans[0];       
+    }
+    public static int function(TreeNode root, int [] ans){    // returns root + max(leftsum,rightsum,0)
+        if(root==null) return 0;
+        int left = Math.max(0,function(root.left,ans));   //drop left/right sum if its negative
+        int right = Math.max(0,function(root.right,ans));
+        ans[0]=Math.max(ans[0],left+right+root.val);     //join left,right,root and make a path, save the max path sum in each call
+        return root.val + Math.max(left,right); //dont make an umbrella, either left or right :)
+    }
+}

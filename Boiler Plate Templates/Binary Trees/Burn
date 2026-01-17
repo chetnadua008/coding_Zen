@@ -1,0 +1,124 @@
+//1. find the target node 
+//2. traverse and save parent,child hashmap
+//3. do bfs on target node 
+class Solution {
+    public int minTime(Node root, int target) {
+        
+        Node targetNode = search(root,target);
+       
+        Map <Node,Node> parent = new HashMap<>();
+        traverse(root,parent);
+        
+        Set<Node> visited = new HashSet<>();
+        Queue<Node> q = new LinkedList<>();
+        q.add(targetNode);
+        visited.add(targetNode);
+        int time=-1;
+        while(!q.isEmpty()){
+            time++;
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                Node curr = q.poll();
+                if(parent.containsKey(curr) && !visited.contains(parent.get(curr))){
+                    q.offer(parent.get(curr));
+                    visited.add(parent.get(curr));
+                }
+                if(curr.left!=null && !visited.contains(curr.left)){
+                    q.offer(curr.left);
+                    visited.add(curr.left);
+                }
+                if(curr.right!=null && !visited.contains(curr.right)){
+                    q.offer(curr.right);
+                    visited.add(curr.right);
+                }
+            }
+        }
+        
+        
+        return time;
+    }
+    public static Node search(Node root,int target){
+        if(root.data==target){
+            return root;
+        }
+        if(root.left!=null){
+            Node res = search(root.left,target);
+            if(res!=null) return res;
+        }
+        if(root.right!=null){
+            Node res = search(root.right,target);
+            if(res!=null) return res;
+        }
+        return null;
+    }
+    public static void traverse(Node root,Map<Node,Node> parent){
+        if(root==null) return;
+
+        if(root.left!=null){
+            parent.put(root.left,root);
+            traverse(root.left,parent);
+        }
+        if(root.right!=null){
+            parent.put(root.right,root);
+            traverse(root.right,parent);
+        }
+    }
+    
+}
+
+//optimization
+
+// use a fucking bfs
+class Solution {
+    public int minTime(Node root, int target) {
+        //step 1
+        Node targetNode = null;
+        Map <Node,Node> parent = new HashMap<>();
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node n = q.poll();
+            if(n.data==target){
+                targetNode=n;
+            }
+            if(n.left!=null){
+                parent.put(n.left,n);
+                q.offer(n.left);
+            }
+            if(n.right!=null){
+                parent.put(n.right,n);
+                q.offer(n.right);
+            }
+        }
+        
+        //step 2
+        Set<Node> visited = new HashSet<>();
+       
+        q.add(targetNode);
+        visited.add(targetNode);
+        int time=-1;
+        while(!q.isEmpty()){
+            time++;
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                Node curr = q.poll();
+                if(parent.containsKey(curr) && !visited.contains(parent.get(curr))){
+                    q.offer(parent.get(curr));
+                    visited.add(parent.get(curr));
+                }
+                if(curr.left!=null && !visited.contains(curr.left)){
+                    q.offer(curr.left);
+                    visited.add(curr.left);
+                }
+                if(curr.right!=null && !visited.contains(curr.right)){
+                    q.offer(curr.right);
+                    visited.add(curr.right);
+                }
+            }
+        }
+        
+        
+        return time;
+    }
+}

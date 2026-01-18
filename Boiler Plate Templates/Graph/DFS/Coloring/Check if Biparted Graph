@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int n = graph.length;
+        int []color = new int[n];
+        Arrays.fill(color,-1);
+        for(int i=0;i<n;i++){
+            if(color[i]!=-1) continue;//already colored that component
+            if(!isBiparted(i,graph,color,0)) return false;
+        }
+        return true;  //all graph components are biparted
+    }
+    public static boolean isBiparted(int node,int[][]graph,int[]color,int c){
+        color[node]=c;   //color the node
+        int [] adj = graph[node];   
+        for(int adjacent:adj){  //check all its adjacent nodes for dfs call
+            //adjacent
+            //is a colored node
+            if(color[adjacent]!=-1){
+                //if adjacent node is same color
+                if(color[adjacent]==c)
+                    return false;       //that means its not a biparte (we have foudn off length cycle)
+            }
+            else{
+                //dfs the uncolored node and see if its not biparted
+                if(!isBiparted(adjacent,graph,color,1-c)) return false;
+            }
+        }
+        return true;
+    }
+}

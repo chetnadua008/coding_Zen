@@ -1,0 +1,9 @@
+error log: track unique nodes for dfs calls, we use visited array
+for saving recursive stack calls node path, use a path array - this will help detect cycle
+
+we cannot use visited array for detecting cycle because, one node can be approachable from two different paths and still not form a cycle in a directed graph
+
+  a->C
+  b->C
+
+  c is mergning point from two different paths, so its not a cycle because different paths 

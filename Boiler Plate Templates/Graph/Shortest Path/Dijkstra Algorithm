@@ -1,0 +1,51 @@
+class Solution {
+    public int[] dijkstra(int V, int[][] edges, int src) {
+        Map<Integer,List<Pair>> adj = new HashMap<>();
+        for(int node=0;node<V;node++){
+            adj.put(node, new ArrayList<>());
+        }
+        for(int [] e:edges){
+            int u=e[0],v=e[1],w=e[2];
+            adj.get(u).add(new Pair(v,w));
+            adj.get(v).add(new Pair(u,w));
+        }
+        int [] minD = new int[V];
+        Arrays.fill(minD,Integer.MAX_VALUE);
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<>((node1,node2)->{
+            if(node1.distance!=node2.distance){
+                return node1.distance-node2.distance;
+            }
+            else{
+                return node1.node-node2.node;
+            }
+        });
+        
+        pq.offer(new Pair(src,0));
+        minD[src]=0;
+        while(!pq.isEmpty()){
+            //check for node with stale distance/longer distance
+            Pair node = pq.poll();
+            if(node.distance>minD[node.node]) continue;
+            
+            //spread water/relaxation step
+            for(Pair ad:adj.get(node.node)){
+                int neighbour = ad.node;
+                int weight = ad.distance;
+                if(weight+node.distance< minD[neighbour]){
+                    minD[neighbour]=weight+node.distance;
+                    pq.offer(new Pair(neighbour,minD[neighbour]));
+                    //we are not removing old entry, we are not updating old entry, we are only adding new entry
+                }
+            }
+        }
+        return minD;
+    }
+}
+class Pair{
+    int node,distance;
+    public Pair(int node,int distance){
+        this.node=node;
+        this.distance=distance;
+    }
+}

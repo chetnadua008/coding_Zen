@@ -1,0 +1,31 @@
+// User function Template for Java
+//https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1
+class Solution {
+    public int[] bellmanFord(int V, int[][] edges, int src) {
+        int [] minD = new int[V];
+        Arrays.fill(minD,100000000);
+        minD[src]=0;
+        
+        for(int i=0;i<V-1;i++){
+            //relax all edges
+            for(int [] e:edges){
+                int u=e[0],v=e[1],w=e[2];
+                if(minD[u]+w<minD[v] && !(minD[u]==100000000 && minD[v]==100000000)){
+                   
+                    minD[v]=minD[u]+w;
+                }
+            }
+        }
+        
+        for(int [] e:edges){
+            int u=e[0],v=e[1],w=e[2];
+            if(minD[u]+w<minD[v] && minD[u]!=100000000 && minD[v]!=100000000){
+                
+               return new int[]{-1};
+            }
+        }
+        
+        return minD;
+        
+    }
+}

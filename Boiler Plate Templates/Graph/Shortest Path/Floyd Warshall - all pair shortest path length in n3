@@ -1,0 +1,15 @@
+class Solution {
+    public void floydWarshall(int[][] A) {
+        int cnt = A.length;
+        for(int k=0;k<cnt;k++){
+//in place manipulation of A because, the rows and columns for k are not updated in its iteration
+            for(int u=0;u<cnt;u++){
+                for(int v=0;v<cnt;v++){
+                    if(A[u][k]==100000000 || A[k][v]==100000000) continue;
+                    else A[u][v]=Math.min(A[u][v],A[u][k]+A[k][v]);
+                }
+            }
+            
+        }
+    }
+}
